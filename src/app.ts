@@ -11,6 +11,9 @@ import globalErrorHandler from './app/middlewares/globalErrorHandler.middleware'
 
 const app: Application = express();
 
+// Trust proxy for rate limiting behind reverse proxies (like Render/Cloudflare)
+app.set('trust proxy', true);
+
 // ── Global Middlewares ────────────────────────────────────────────────────────
 app.use(helmet());
 app.use(cors());
