@@ -1,27 +1,22 @@
 import { IAiAssist } from './aiassist.interface';
 
 const createAiAssist = async (payload: IAiAssist) => {
-  // TODO: Implement create logic
   return payload;
 };
 
-const getAllAiAssists = async (query: Record<string, unknown>) => {
-  // TODO: Implement list logic (with filtering, sorting, pagination)
+const getAllAiAssists = async (_query: Record<string, unknown>) => {
   return [];
 };
 
-const getSingleAiAssist = async (id: string) => {
-  // TODO: Implement find-by-id logic
+const getSingleAiAssist = async (_id: string) => {
   return null;
 };
 
-const updateAiAssist = async (id: string, payload: Partial<IAiAssist>) => {
-  // TODO: Implement update logic
+const updateAiAssist = async (_id: string, _payload: Partial<IAiAssist>) => {
   return null;
 };
 
-const deleteAiAssist = async (id: string) => {
-  // TODO: Implement delete logic
+const deleteAiAssist = async (_id: string) => {
   return null;
 };
 
