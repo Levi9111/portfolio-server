@@ -13,7 +13,7 @@ const moduleRoutes = [
   { path: '/projects', route: ProjectRoutes },
   { path: '/messages', route: MessageRoutes },
   { path: '/profiles', route: ProfileRoutes },
-    { path: '/ai-assist', route: AiAssistRoutes },
+  { path: '/ai-assist', route: AiAssistRoutes },
   // --- INJECT ROUTES HERE ---
 ];
 

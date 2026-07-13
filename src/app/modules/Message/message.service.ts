@@ -5,7 +5,7 @@ import { sendNotification } from '../../utils/sendNotification';
 
 const createMessage = async (payload: IMessage) => {
   const result = await MessageModel.create(payload);
-  
+
   // Trigger notification asynchronously (non-blocking)
   sendNotification({
     name: payload.name,

@@ -5,12 +5,15 @@ import { GoogleGenAI } from '@google/genai';
 import config from '../../config';
 
 const modeInstructions: Record<string, string> = {
-  enhance: "Make this message more professional, clear, and grammatically perfect.",
-  shorten: "Make this message very short and concise. Remove all fluff.",
-  lengthen: "Expand this message into a detailed, thoughtful inquiry.",
-  casual: "Rewrite this in a friendly, relaxed, and conversational tone.",
-  formal: "Rewrite this in a strict, business-formal tone with official language.",
-  "generate-subject": "Generate a concise, professional email subject line (under 6 words) based on the message content. Return only the subject line text, nothing else (no quotes, no prefixes).",
+  enhance:
+    'Make this message more professional, clear, and grammatically perfect.',
+  shorten: 'Make this message very short and concise. Remove all fluff.',
+  lengthen: 'Expand this message into a detailed, thoughtful inquiry.',
+  casual: 'Rewrite this in a friendly, relaxed, and conversational tone.',
+  formal:
+    'Rewrite this in a strict, business-formal tone with official language.',
+  'generate-subject':
+    'Generate a concise, professional email subject line (under 6 words) based on the message content. Return only the subject line text, nothing else (no quotes, no prefixes).',
 };
 
 const createAiAssist = catchAsync(async (req: Request, res: Response) => {
@@ -32,7 +35,8 @@ const createAiAssist = catchAsync(async (req: Request, res: Response) => {
     });
   }
 
-  const freelancerProfile = config.freelancer_profile || 'Freelancer portfolio profile';
+  const freelancerProfile =
+    config.freelancer_profile || 'Freelancer portfolio profile';
 
   const prompt = `This is the freelancer's profile: ${freelancerProfile}. The client wrote this: ${userMessage}. Rewrite the client's message using this style: ${modeInstruction}. Return only the rewritten text, nothing else.`;
 
