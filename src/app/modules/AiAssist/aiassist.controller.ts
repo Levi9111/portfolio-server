@@ -50,7 +50,7 @@ const createAiAssist = catchAsync(async (req: Request, res: Response) => {
   const ai = new GoogleGenAI({ apiKey: config.gemini_api_key });
 
   const response = await ai.models.generateContent({
-    model: 'gemini-2.5-flash',
+    model: 'gemini-3.1-flash-lite',
     contents: prompt,
   });
 
