@@ -31,6 +31,7 @@ export const sendNotification = async (
               fields: [
                 { name: 'Sender Name', value: name, inline: true },
                 { name: 'Sender Email', value: email, inline: true },
+                { name: 'Subject', value: msgSubject, inline: false },
                 { name: 'Message', value: message },
               ],
               timestamp: new Date().toISOString(),
