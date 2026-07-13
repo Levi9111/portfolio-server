@@ -10,6 +10,7 @@ const modeInstructions: Record<string, string> = {
   lengthen: "Expand this message into a detailed, thoughtful inquiry.",
   casual: "Rewrite this in a friendly, relaxed, and conversational tone.",
   formal: "Rewrite this in a strict, business-formal tone with official language.",
+  "generate-subject": "Generate a concise, professional email subject line (under 6 words) based on the message content. Return only the subject line text, nothing else (no quotes, no prefixes).",
 };
 
 const createAiAssist = catchAsync(async (req: Request, res: Response) => {
