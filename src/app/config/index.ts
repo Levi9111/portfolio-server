@@ -15,4 +15,8 @@ export default {
   resend_api_key: process.env.RESEND_API_KEY,
   notification_email: process.env.NOTIFICATION_EMAIL,
   discord_webhook_url: process.env.DISCORD_WEBHOOK_URL,
+  gemini_api_key: process.env.GEMINI_API_KEY,
+  gemini_api_name: process.env.GEMINI_API_NAME,
+  gemini_project_name: process.env.GEMINI_PROJECT_NAME,
+  gemini_project_number: process.env.GEMINI_PROJECT_NUMBER,
 };
