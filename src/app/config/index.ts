@@ -19,4 +19,5 @@ export default {
   gemini_api_name: process.env.GEMINI_API_NAME,
   gemini_project_name: process.env.GEMINI_PROJECT_NAME,
   gemini_project_number: process.env.GEMINI_PROJECT_NUMBER,
+  freelancer_profile: process.env.FREELANCER_PROFILE,
 };
