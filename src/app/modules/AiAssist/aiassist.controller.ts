@@ -16,7 +16,22 @@ const modeInstructions: Record<string, string> = {
     'Generate a concise, professional email subject line (under 6 words) based on the message content. Return only the subject line text, nothing else (no quotes, no prefixes).',
 };
 
+let totalAiRequestsToday = 0;
+let currentAiDay = new Date().toDateString();
+
 const createAiAssist = catchAsync(async (req: Request, res: Response) => {
+  const today = new Date().toDateString();
+  if (today !== currentAiDay) {
+    currentAiDay = today;
+    totalAiRequestsToday = 0;
+  }
+
+  if (totalAiRequestsToday >= 400) {
+    return res.status(StatusCodes.TOO_MANY_REQUESTS).json({
+      error: 'Daily global AI usage limit reached. Please try again tomorrow.',
+    });
+  }
+
   const { userMessage, mode } = req.body;
 
   if (!userMessage || !mode) {
@@ -55,6 +70,8 @@ const createAiAssist = catchAsync(async (req: Request, res: Response) => {
   });
 
   const rewrittenText = response.text || '';
+
+  totalAiRequestsToday++;
 
   return res.status(StatusCodes.OK).json({
     success: true,
