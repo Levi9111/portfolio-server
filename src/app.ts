@@ -9,14 +9,43 @@ import router from './app/routes';
 import notFound from './app/middlewares/notFound.middleware';
 import globalErrorHandler from './app/middlewares/globalErrorHandler.middleware';
 
+const allowedOrigins = [
+  'http://localhost:3000', // local dev
+  'https://www.shanjidahmad.com',
+  'https://shanjidahmad.com',
+];
+
 const app: Application = express();
 
 // Trust proxy for rate limiting behind reverse proxies (like Render/Cloudflare)
 app.set('trust proxy', true);
 
 // ── Global Middlewares ────────────────────────────────────────────────────────
+
 app.use(helmet());
-app.use(cors());
+
+app.use(
+  cors({
+    origin: function (origin, callback) {
+      // Allow requests with no origin (like mobile apps or curl)
+      if (!origin) return callback(null, true);
+      if (
+        allowedOrigins.includes(origin) ||
+        process.env.NODE_ENV === 'development'
+      ) {
+        callback(null, true);
+      } else {
+        callback(new Error('Not allowed by CORS'));
+      }
+    },
+    credentials: true,
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization'],
+  }),
+);
+
+// Also handle preflight for all routes
+app.options('*', cors());
 app.use(globalRateLimiter);
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
