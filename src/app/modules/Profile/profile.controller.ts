@@ -54,10 +54,21 @@ const deleteProfile = catchAsync(async (req: Request, res: Response) => {
   });
 });
 
+const getGithubCommits = catchAsync(async (req: Request, res: Response) => {
+  const result = await ProfileService.getGithubCommits();
+  sendResponse(res, {
+    statusCode: StatusCodes.OK,
+    success: true,
+    message: 'GitHub commits retrieved successfully',
+    data: result,
+  });
+});
+
 export const ProfileControllers = {
   createProfile,
   getAllProfiles,
   getSingleProfile,
   updateProfile,
   deleteProfile,
+  getGithubCommits,
 };

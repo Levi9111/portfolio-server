@@ -1,5 +1,6 @@
 import { IProfile } from './profile.interface';
 import { ProfileModel } from './profile.model';
+import { fetchGithubCommits } from '../../utils/github';
 
 const DEFAULT_PROFILE: IProfile = {
   name: 'Shanjid Ahmad',
@@ -262,10 +263,16 @@ const deleteProfile = async (id: string) => {
   return result;
 };
 
+const getGithubCommits = async () => {
+  const result = await fetchGithubCommits('Levi9111', 10);
+  return result;
+};
+
 export const ProfileService = {
   createProfile,
   getAllProfiles,
   getSingleProfile,
   updateProfile,
   deleteProfile,
+  getGithubCommits,
 };

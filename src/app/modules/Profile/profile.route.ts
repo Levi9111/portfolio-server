@@ -6,6 +6,7 @@ import { ProfileValidation } from './profile.validation';
 
 const router = express.Router();
 
+router.get('/github-commits', ProfileControllers.getGithubCommits);
 router.get('/', ProfileControllers.getSingleProfile);
 
 router.put(
