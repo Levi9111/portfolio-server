@@ -3,6 +3,7 @@ export interface IMessage {
   email: string;
   subject?: string;
   message: string;
+  originalMessage?: string;
   isRead: boolean;
   createdAt?: Date;
   updatedAt?: Date;

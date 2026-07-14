@@ -6,6 +6,7 @@ const createMessageSchema = z.object({
     email: z.string().email('Invalid email address'),
     subject: z.string().optional(),
     message: z.string().min(1, 'Message is required'),
+    originalMessage: z.string().optional(),
   }),
 });
 
