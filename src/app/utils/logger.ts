@@ -18,8 +18,12 @@ const logger = {
 
   error: (message: string, error?: unknown): void => {
     console.error(formatMessage('error', message));
-    if (error instanceof Error && isDev) {
-      console.error(error.stack);
+    if (error) {
+      if (error instanceof Error) {
+        console.error(error.stack || error.message);
+      } else {
+        console.error(error);
+      }
     }
   },
 

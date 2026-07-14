@@ -10,7 +10,7 @@ import notFound from './app/middlewares/notFound.middleware';
 import globalErrorHandler from './app/middlewares/globalErrorHandler.middleware';
 
 const allowedOrigins = [
-  'http://localhost:3000', // local dev
+  'http://localhost:3000',
   'https://www.shanjidahmad.com',
   'https://shanjidahmad.com',
 ];
