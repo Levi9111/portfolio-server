@@ -6,12 +6,13 @@ interface INotificationPayload {
   email: string;
   subject?: string;
   message: string;
+  originalMessage?: string;
 }
 
 export const sendNotification = async (
   payload: INotificationPayload,
 ): Promise<void> => {
-  const { name, email, subject, message } = payload;
+  const { name, email, subject, message, originalMessage } = payload;
   const msgSubject = subject || 'No Subject';
 
   console.log(`[sendNotification] Initiating Discord notification. Sender: "${name}" <${email}>, Subject: "${msgSubject}"`);
@@ -20,17 +21,24 @@ export const sendNotification = async (
   if (config.discord_webhook_url) {
     try {
       logger.info(`Sending notification to Discord webhook: ${config.discord_webhook_url.substring(0, 30)}...`);
+      
+      const fields = [
+        { name: 'Sender Name', value: name, inline: true },
+        { name: 'Sender Email', value: email, inline: true },
+        { name: 'Subject', value: msgSubject, inline: false },
+        { name: 'Message', value: message },
+      ];
+
+      if (originalMessage) {
+        fields.push({ name: 'Original Draft (Pre-AI)', value: originalMessage, inline: false });
+      }
+
       const bodyPayload = {
         embeds: [
           {
             title: `📩 New Message: ${msgSubject}`,
             color: 9133302, // Hex #8B5CF6 -> Decimal 9133302
-            fields: [
-              { name: 'Sender Name', value: name, inline: true },
-              { name: 'Sender Email', value: email, inline: true },
-              { name: 'Subject', value: msgSubject, inline: false },
-              { name: 'Message', value: message },
-            ],
+            fields,
             timestamp: new Date().toISOString(),
           },
         ],

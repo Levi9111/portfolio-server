@@ -12,6 +12,7 @@ const createMessage = async (payload: IMessage) => {
     email: payload.email,
     subject: payload.subject,
     message: payload.message,
+    originalMessage: payload.originalMessage,
   });
 
   return result;
